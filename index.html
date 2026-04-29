@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rex Diner's - Gestion & Comptabilité</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-brand">
+                <h1>Rex Diner's</h1>
+                <p>Gestion & Comptabilité</p>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar" id="sidebar">
+            <ul id="nav-menu">
+                <!-- Rempli dynamiquement par navigation.js -->
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main id="main-content">
+            <div class="dashboard">
+                <h2>Dashboard</h2>
+                <p id="current-date"></p>
+                
+                <div class="stats-grid">
+    <div class="stat-card">
+        <h3>CHIFFRE D'AFFAIRES</h3>
+        <p id="chiffre-affaires">$0.00</p>
+    </div>
+    <div class="stat-card">
+        <h3>SALAIRE</h3>
+        <p id="salaire">$0.00</p>
+    </div>
+    <div class="stat-card">
+        <h3>TEMPS TRAVAILLÉ</h3>
+        <p id="temps-travaille">0h</p>
+    </div>
+    <div class="stat-card">
+        <h3>EMPLOYÉS ACTIFS</h3>
+        <p id="employes-actifs">0</p>
+    </div>
+</div>
+
+                <div class="service-timer">
+                    <h3>Pointage de service</h3>
+                    <div id="timer-display">00:00:00</div>
+                    <button id="btn-prise-service" class="btn-primary">Prise de service</button>
+                    <button id="btn-fin-service" class="btn-danger" disabled>Fin de service</button>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- Charger les scripts dans l'ordre -->
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

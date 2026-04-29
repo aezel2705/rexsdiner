@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks - Rex Diner's</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rex Diner's</h1>
+            <p>Gestion & Comptabilité</p>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <ul id="nav-menu"></ul>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <h2>Stocks</h2>
+                <p>État des stocks de produits finis</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>TOTAL PRODUITS EN STOCK</h3>
+                    <p id="total-stock">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>VALEUR TOTALE</h3>
+                    <p id="valeur-stock">$0.00</p>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table id="stocks-table">
+                    <thead>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Quantité disponible</th>
+                            <th>Prix de vente</th>
+                            <th>Valeur totale</th>
+                            <th>Dernière mise à jour</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stocks-body">
+                        <tr>
+                            <td colspan="5">Chargement...</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/stocks.js"></script>
+</body>
+</html>

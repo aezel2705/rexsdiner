@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comptabilité - Rex Diner's</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rex Diner's</h1>
+            <p>Gestion & Comptabilité</p>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <ul id="nav-menu"></ul>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <h2>Comptabilité</h2>
+                <p>Récapitulatif comptable de la semaine</p>
+            </div>
+
+            <div class="periode-selector">
+                <label>Période du</label>
+                <input type="date" id="date-debut">
+                <label>au</label>
+                <input type="date" id="date-fin">
+                <button id="btn-actualiser" class="btn-primary">Actualiser</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card highlight">
+                    <h3>CHIFFRE D'AFFAIRES TOTAL</h3>
+                    <p id="ca-total">$0.00</p>
+                </div>
+                <div class="stat-card">
+                    <h3>TOTAL SALAIRES</h3>
+                    <p id="total-salaires">$0.00</p>
+                </div>
+                <div class="stat-card success">
+                    <h3>BÉNÉFICES ENTREPRISE</h3>
+                    <p id="benefices">$0.00</p>
+                </div>
+                <div class="stat-card">
+                    <h3>NOMBRE DE VENTES</h3>
+                    <p id="nb-ventes">0</p>
+                </div>
+            </div>
+
+            <div class="details-sections">
+                <div class="section">
+                    <h3>Détail par employé</h3>
+                    <table id="table-employes">
+                        <thead>
+                            <tr>
+                                <th>Employé</th>
+                                <th>Ventes</th>
+                                <th>Commission</th>
+                                <th>Salaire base</th>
+                                <th>Total à verser</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-employes"></tbody>
+                    </table>
+                </div>
+
+                <div class="section">
+                    <h3>Top produits vendus</h3>
+                    <table id="table-produits">
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Quantité vendue</th>
+                                <th>Chiffre d'affaires</th>
+                            </tr>
+                        </thead>
+                        <tbody id="body-produits"></tbody>
+                    </table>
+                </div>
+                <div class="section" style="margin-top: 30px;">
+    <h3>📊 Résumé par partenaire</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Partenaire</th>
+                <th>Nombre de ventes</th>
+                <th>Montant réel</th>
+                <th>Montant facturé</th>
+                <th>Subvention</th>
+            </tr>
+        </thead>
+        <tbody id="body-partenaires"></tbody>
+    </table>
+</div>
+<div class="section" style="margin-top: 30px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h3>📅 Archives hebdomadaires</h3>
+        <button id="btn-cloturer-semaine" class="btn-primary" style="width: auto;">
+            🔒 Clôturer la semaine
+        </button>
+    </div>
+    <p style="color: #666; margin-bottom: 15px;">Consultez les semaines précédentes (6 semaines conservées)</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Semaine</th>
+                <th>CA Total</th>
+                <th>Ventes</th>
+                <th>Heures</th>
+                <th>Salaires</th>
+                <th>Bénéfice</th>
+                <th>Clôturé par</th>
+            </tr>
+        </thead>
+        <tbody id="body-archives-hebdo">
+            <tr><td colspan="7">Chargement...</td></tr>
+        </tbody>
+    </table>
+</div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/comptabilite.js"></script>
+</body>
+</html>

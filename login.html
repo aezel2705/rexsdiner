@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rex Diner's - Connexion</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        /* Style spécifique à la page login, en harmonie avec le dashboard */
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 50px);
+            margin-top: 50px;
+            margin-left: 0;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #f5f6fa 0%, #e8ecf1 100%);
+        }
+        
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .login-card .logo {
+            margin-bottom: 20px;
+        }
+        
+        .login-card .logo h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+        
+        .login-card .logo p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin: 5px 0 0 0;
+        }
+        
+        .login-card .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        .login-card .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: #2c3e50;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .login-card .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            outline: none;
+            font-family: inherit;
+        }
+        
+        .login-card .form-group input:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 13px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 5px;
+        }
+        
+        .btn-login:hover {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+        }
+        
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #f5c6cb;
+            display: none;
+            font-size: 0.9rem;
+        }
+        
+        .login-footer {
+            margin-top: 25px;
+            color: #95a5a6;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (identique au dashboard) -->
+    <header>
+        <div class="header-brand">
+            <h1>Rex Diner's</h1>
+            <p>Gestion & Comptabilité</p>
+        </div>
+        <button id="theme-toggle-login" style="background: rgba(255,255,255,0.2); color: white; border: 1px solid rgba(255,255,255,0.3); padding: 8px 15px; border-radius: 5px; cursor: pointer;">
+        🌙 Mode Sombre
+    </button>
+    </header>
+
+    <!-- Contenu centré -->
+    <div class="login-wrapper">
+        <div class="login-card">
+            <div class="logo">
+                <h2>Rex Diner's</h2>
+                <p>Gestion & Comptabilité</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur</label>
+                    <input type="text" id="username" required autocomplete="username" placeholder="Entrez votre nom d'utilisateur">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mot de passe</label>
+                    <input type="password" id="password" required autocomplete="current-password" placeholder="Entrez votre mot de passe">
+                </div>
+                
+                <div id="login-error" class="error-message"></div>
+                
+                <button type="submit" class="btn-login">Se connecter</button>
+            </form>
+            
+            <div class="login-footer">
+                <p>Rex Diner's © 2026</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Configuration Supabase
+        const SUPABASE_URL = 'https://rxbguanuzkpjbdxlrdqz.supabase.co/';     // ← À remplacer
+        const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ4Ymd1YW51emtwamJkeGxyZHF6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyMDE1MTUsImV4cCI6MjA5Mjc3NzUxNX0.d44gn_RCzY4jd1RbJVOHe4dfrlFBF9fJ-UMkX6f4EeI';                       // ← À remplacer
+        const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        // Rediriger si déjà connecté
+        if (localStorage.getItem('currentUser')) {
+            window.location.href = 'index.html';
+        }
+
+        document.getElementById('login-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('login-error');
+            
+            errorDiv.style.display = 'none';
+            
+            if (!username || !password) {
+                errorDiv.textContent = 'Veuillez remplir tous les champs';
+                errorDiv.style.display = 'block';
+                return;
+            }
+            
+            try {
+                const { data, error } = await supabaseClient
+                    .from('employes')
+                    .select('*')
+                    .eq('username', username);
+                
+                if (error) throw error;
+                
+                if (!data || data.length === 0) {
+                    errorDiv.textContent = 'Utilisateur non trouvé';
+                    errorDiv.style.display = 'block';
+                    return;
+                }
+                
+                const user = data[0];
+                
+                const encoder = new TextEncoder();
+                // Vérification simple du mot de passe
+                if (user.password_hash !== password) {
+                    errorDiv.textContent = 'Mot de passe incorrect';
+                    errorDiv.style.display = 'block';
+                return;
+                }
+                
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                window.location.href = 'index.html';
+                
+            } catch (err) {
+                errorDiv.textContent = 'Une erreur est survenue';
+                errorDiv.style.display = 'block';
+                console.error(err);
+            }
+        });
+        // Mode sombre - login
+            const isDark = localStorage.getItem('darkMode') === 'true';
+                const themeBtn = document.getElementById('theme-toggle-login');
+
+            if (isDark) {
+                document.body.classList.add('dark-mode');
+                themeBtn.textContent = '☀️ Mode Clair';
+            }
+
+            themeBtn.addEventListener('click', () => {
+                const dark = document.body.classList.toggle('dark-mode');
+                localStorage.setItem('darkMode', dark);
+                themeBtn.textContent = dark ? '☀️ Mode Clair' : '🌙 Mode Sombre';
+        });
+    </script>
+</body>
+</html>

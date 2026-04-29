@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employés - Rex Diner's</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rex Diner's</h1>
+            <p>Gestion & Comptabilité</p>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <ul id="nav-menu"></ul>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <h2>Employés</h2>
+                <p>Gérez votre équipe — les fiches de paye sont dans Comptabilité</p>
+                <button id="btn-ajouter-employe" class="btn-success">+ Ajouter un employé</button>
+            </div>
+
+            <div class="table-container">
+                <table id="employes-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Grade</th>
+                            <th>Salaire base</th>
+                            <th>Commission %</th>
+                            <th>Ventes totales</th>
+                            <th>Commission ($)</th>
+                            <th>À verser</th>
+                            <th>Heures/semaine</th>
+                            <th>Services</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="employes-body">
+                        <tr><td colspan="10">Chargement...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+<div style="margin-top: 40px;">
+    <h3>⚙️ Gestion des grades</h3>
+    <p>Définissez les permissions pour chaque grade</p>
+    
+    <div class="form-group">
+        <label>Sélectionner un grade</label>
+        <select id="select-grade">
+            <option value="">Choisir...</option>
+        </select>
+    </div>
+
+    <div id="permissions-container" style="display: none;">
+        <h4>Permissions</h4>
+        <div id="permissions-list"></div>
+        <button id="btn-save-permissions" class="btn-primary" style="margin-top: 15px;">💾 Enregistrer les permissions</button>
+    </div>
+</div>
+            <!-- Modal pour ajouter/modifier un employé -->
+            <div id="modal-employe" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h3 id="modal-title">Ajouter un employé</h3>
+                    <form id="employe-form">
+                        <div class="form-group">
+                            <label>Nom complet</label>
+                            <input type="text" id="emp-nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nom d'utilisateur</label>
+                            <input type="text" id="emp-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Mot de passe</label>
+                            <input type="password" id="emp-password">
+                            <small>Laisser vide pour ne pas changer</small>
+                        </div>
+                        <div class="form-group">
+                            <label>Grade</label>
+                            <select id="emp-grade" required>
+                                <option value="cuisinier">Cuisinier</option>
+                                <option value="serveur">Serveur</option>
+                                <option value="vendeur">Vendeur</option>
+                                <option value="manager">Manager</option>
+                                <option value="patron">Patron</option>
+                                <option value="co_patron">Co-Patron</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Salaire de base ($)</label>
+                            <input type="number" id="emp-salaire" value="2000" min="0" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label>Commission (%)</label>
+                            <input type="number" id="emp-commission" value="25" min="0" max="100" step="0.01">
+                        </div>
+                        <input type="hidden" id="emp-id">
+                        <button type="submit" class="btn-primary">Enregistrer</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/employes.js"></script>
+</body>
+</html>

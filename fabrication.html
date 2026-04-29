@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fabrication - Rex Diner's</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rex Diner's</h1>
+            <p>Gestion & Comptabilité</p>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <ul id="nav-menu"></ul>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <h2>Fabrication</h2>
+                <p>Déclarez les produits que vous avez fabriqués</p>
+            </div>
+
+            <div class="fabrication-form">
+                <div class="form-group">
+                    <label>Employé</label>
+                    <select id="employe-fabrication">
+                        <option value="">Choisir l'employé...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Produit fabriqué</label>
+                    <select id="produit-fabrication">
+                        <option value="">Choisir le produit...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Quantité</label>
+                    <input type="number" id="quantite-fabrication" value="1" min="1">
+                </div>
+
+                <button type="button" id="btn-declarer-fabrication" class="btn-primary">
+                    Déclarer la fabrication
+                </button>
+
+                <div id="message-fabrication" class="message" style="display: none;"></div>
+            </div>
+
+            <div class="dernieres-fabrications">
+                <h3>Dernières fabrications</h3>
+                <div id="liste-fabrications"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/fabrication.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archives - Rex Diner's</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rex Diner's</h1>
+            <p>Gestion & Comptabilité</p>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <ul id="nav-menu"></ul>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <h2>Archives</h2>
+                <p>Historique complet de toutes les actions</p>
+            </div>
+
+            <div class="filters">
+                <div class="form-group">
+                    <label>Type d'action</label>
+                    <select id="filter-type">
+                        <option value="">Tous</option>
+                        <option value="vente">Ventes</option>
+                        <option value="fabrication">Fabrications</option>
+                        <option value="service">Services</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="filter-date-archives">
+                </div>
+                <button id="btn-reset-archives" class="btn-secondary">Réinitialiser</button>
+            </div>
+
+            <div class="timeline" id="archives-timeline">
+                <p>Chargement des archives...</p>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/archives.js"></script>
+</body>
+</html>

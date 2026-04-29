@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recettes - Rex Diner's</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-brand">
+                <h1>Rex Diner's</h1>
+                <p>Gestion & Comptabilité</p>
+            </div>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <ul id="nav-menu"></ul>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <h2>🧾 Recettes</h2>
+                <p>Calculez les ingrédients nécessaires pour vos fabrications</p>
+            </div>
+
+            <!-- Calculateur -->
+            <div class="section-card">
+                <h3>📊 Calculateur</h3>
+                <div style="display: flex; gap: 15px; align-items: flex-end; flex-wrap: wrap;">
+                    <div class="form-group" style="flex: 1; min-width: 200px;">
+                        <label>Produit à fabriquer</label>
+                        <select id="produit-recette">
+                            <option value="">Choisir un produit...</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex: 1; min-width: 150px;">
+                        <label>Quantité voulue</label>
+                        <input type="number" id="quantite-produire" value="1" min="1">
+                    </div>
+                    <button id="btn-calculer" class="btn-primary">Calculer</button>
+                </div>
+                <div id="resultats-recette" style="display: none; margin-top: 20px;"></div>
+            </div>
+
+            <!-- Gestion des recettes -->
+            <div class="section-card" style="margin-top: 30px;">
+                <h3>⚙️ Gérer une recette</h3>
+                
+                <div class="form-group">
+                    <label>Produit</label>
+                    <select id="admin-produit">
+                        <option value="">Choisir un produit...</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Quantité produite avec ces ingrédients</label>
+                    <input type="number" id="quantite-produite" value="1" min="1">
+                    <small style="color: #666;">Ex: Pour un café, on met 3 grains + 1 eau = 2 cafés produits</small>
+                </div>
+
+                <div id="ingredients-container">
+                    <label>Ingrédients</label>
+                    <div id="ingredients-list"></div>
+                    <button id="btn-ajouter-ingredient" class="btn-success" style="margin-top: 10px;">+ Ajouter un ingrédient</button>
+                    <button id="btn-enregistrer-recette" class="btn-primary" style="margin-top: 15px; width: 100%;">💾 Enregistrer la recette</button>
+                </div>
+
+                <div id="message-recette" class="message" style="display: none; margin-top: 15px;"></div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/recettes.js"></script>
+</body>
+</html>

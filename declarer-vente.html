@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Déclarer une Vente - Rex Diner's</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rex Diner's</h1>
+            <p>Gestion & Comptabilité</p>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <ul id="nav-menu"></ul>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <h2>Déclarer une Vente</h2>
+                <p>Enregistrez vos ventes — les stocks et salaires sont calculés automatiquement</p>
+            </div>
+
+            <div class="vente-form">
+                <div class="form-group">
+                    <label>Employé vendeur</label>
+                    <select id="employe-select">
+                        <option value="">Choisir l'employé...</option>
+                    </select>
+                </div>
+<div class="form-group">
+    <label>Partenaire (optionnel)</label>
+    <select id="partenaire-select">
+        <option value="">Aucun partenaire (vente standard)</option>
+    </select>
+    <small id="partenaire-info" style="display: none; color: var(--accent-color);"></small>
+</div>
+                <div id="produits-container">
+                    <div class="produit-ligne">
+                        <div class="form-group">
+                            <label>Produit</label>
+                            <select class="produit-select">
+                                <option value="">Produit...</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Quantité</label>
+                            <input type="number" class="quantite-input" value="1" min="1">
+                        </div>
+                        <div class="form-group">
+                            <label>Prix unitaire</label>
+                            <input type="text" class="prix-input" readonly>
+                        </div>
+                        <button type="button" class="btn-danger btn-remove-ligne" title="Supprimer">×</button>
+                    </div>
+                </div>
+
+                <button type="button" id="btn-ajouter-ligne" class="btn-success">[+] Ajouter une ligne</button>
+
+                <div class="vente-totals">
+                    <div class="total-item">
+                        <span>Total vente :</span>
+                        <span id="total-vente">$0.00</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Coût total :</span>
+                        <span id="cout-total">$0.00</span>
+                    </div>
+                    <div class="total-item">
+                        <span>Bénéfice net :</span>
+                        <span id="benefice-net">$0.00</span>
+                    </div>
+                </div>
+
+                <button type="button" id="btn-declarer" class="btn-primary btn-lg">Déclarer la vente</button>
+            </div>
+
+            <div id="message-vente" class="message" style="display: none;"></div>
+        </main>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/declarer-vente.js"></script>
+</body>
+</html>
