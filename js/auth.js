@@ -29,11 +29,17 @@ class Auth {
     }
 
     checkSession() {
-        const user = localStorage.getItem('currentUser');
-        if (user) {
-            this.currentUser = JSON.parse(user);
+    const user = localStorage.getItem('currentUser');
+    if (user) {
+        const parsed = JSON.parse(user);
+        if (parsed.force_logout) {
+            localStorage.removeItem('currentUser');
+            this.currentUser = null;
+            return;
         }
+        this.currentUser = parsed;
     }
+}
 
     isAuthenticated() {
         return !!this.currentUser;
