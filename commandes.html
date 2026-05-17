@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commandes - Rex Diner's</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        .commande-section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            margin-bottom: 25px;
+        }
+        .commande-section h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        .fournisseur-card {
+            background: var(--card-bg);
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+        }
+        .fournisseur-card h4 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .fournisseur-card table {
+            margin: 0;
+            box-shadow: none;
+        }
+        .fournisseur-card table th {
+            background: #f8f9fa;
+            color: var(--primary-color);
+            font-size: 0.85rem;
+        }
+        .fournisseur-card .total-fournisseur {
+            text-align: right;
+            font-weight: bold;
+            margin-top: 10px;
+            color: var(--success-color);
+        }
+        .total-general {
+            background: var(--accent-color);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        /* Mode sombre */
+        body.dark-mode .fournisseur-card {
+            border-color: rgba(108,92,231,0.2);
+        }
+        body.dark-mode .fournisseur-card table th {
+            background: #1a1030;
+            color: #a29bfe;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-brand">
+                <h1>Rex Diner's</h1>
+                <p>Gestion & Comptabilité</p>
+            </div>
+        </header>
+
+        <nav class="sidebar" id="sidebar">
+            <ul id="nav-menu"></ul>
+        </nav>
+
+        <main>
+            <div class="page-header">
+                <h2>📦 Commandes fournisseurs</h2>
+                <p>Liste de courses générée à partir des recettes</p>
+            </div>
+
+            <!-- Sélecteur de quantités -->
+            <div class="commande-section">
+                <h3>📊 Produits à fabriquer</h3>
+                <p style="color: #666; margin-bottom: 15px;">Sélectionnez les quantités à produire pour chaque produit</p>
+                <div id="produits-quantites"></div>
+                <button id="btn-generer-commandes" class="btn-primary" style="margin-top: 15px; width: auto;">
+                    🔍 Générer la liste de courses
+                </button>
+            </div>
+
+            <!-- Résultats -->
+            <div id="resultats-commandes" style="display: none;">
+                <div class="commande-section">
+                    <h3>🛒 Liste de courses par fournisseur</h3>
+                    <div id="liste-fournisseurs"></div>
+                    <div class="total-general" id="total-general" style="margin-top: 20px;"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/commandes.js"></script>
+</body>
+</html>
