@@ -7,6 +7,7 @@ class Navigation {
             { id: 'declarer-vente', nom: 'Déclarer Vente', icone: '💰', url: 'declarer-vente.html' },
             { id: 'fabrication', nom: 'Fabrication', icone: '🔧', url: 'fabrication.html' },
             { id: 'recettes', nom: 'Recettes', icone: '🧾', url: 'recettes.html' },
+            { id: 'commandes', nom: 'Commandes', icone: '📦', url: 'commandes.html' },
             { id: 'stocks', nom: 'Stocks', icone: '📦', url: 'stocks.html' },
             { id: 'produits-prix', nom: 'Produits & Prix', icone: '🏷️', url: 'produits-prix.html' },
             { id: 'employes', nom: 'Employés', icone: '👥', url: 'employes.html' },
